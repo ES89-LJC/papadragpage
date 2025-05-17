@@ -21,6 +21,10 @@
       color: rgb(184, 193, 255);
       scroll-behavior: smooth;
     }
+    
+    body {
+      min-height: 200vh; /* ✅ pour permettre le scroll */
+    }
 
     .hero {
       position: relative;
@@ -97,22 +101,26 @@
   </div>
 
   <script>
-    const hero = document.querySelector('.hero');
+  const hero = document.querySelector('.hero');
 
-    function checkScroll() {
-      const rect = hero.getBoundingClientRect();
-      const scrollTrigger = window.innerHeight / 2;
+  function checkScroll() {
+    const scrollY = window.scrollY;
+    const trigger = window.innerHeight / 2;
 
-      if (rect.bottom < window.innerHeight - scrollTrigger) {
-        document.body.classList.add('scrolled');
-      } else {
-        document.body.classList.remove('scrolled');
-      }
+    if (scrollY > trigger) {
+      document.body.classList.add('scrolled');
+    } else {
+      document.body.classList.remove('scrolled');
     }
+  }
 
+  // Lancer au chargement
+  window.addEventListener('load', () => {
+    checkScroll();
     window.addEventListener('scroll', checkScroll);
-    window.addEventListener('load', checkScroll); // au cas où le scroll soit déjà suffisant au chargement
-  </script>
+  });
+</script>
+  
 
 </body>
 </html>
