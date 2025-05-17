@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Papa Drag</title>
+  <link href="https://fonts.googleapis.com/css2?family=Lora&family=Playfair+Display&display=swap" rel="stylesheet">
+
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body, html {
+      height: 100%;
+      font-family: 'Lora', serif;
+      background-color: #0f0f0f;
+      color: rgb(184, 193, 255);
+      scroll-behavior: smooth;
+    }
+
+    .hero {
+      position: relative;
+      padding: 100px 20px 50px;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      text-align: center;
+    }
+
+    .hero video {
+      width: 100%;
+      max-width: 800px;
+      border-radius: 12px;
+      filter: blur(20px);
+      transition: filter 0.5s ease;
+      z-index: 1;
+    }
+
+    .title {
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      font-size: 4rem;
+      color: rgb(39, 38, 38);
+      z-index: 2;
+      opacity: 1;
+      transition: opacity 0.5s ease;
+      pointer-events: none;
+    }
+
+    .content {
+      padding: 50px 20px;
+      max-width: 800px;
+      margin: 0 auto;
+      font-size: 1.2rem;
+      line-height: 1.8;
+      opacity: 0;
+      transition: opacity 0.5s ease;
+      text-align: center;
+    }
+
+    body.scrolled .hero img {
+      filter: blur(0);
+    }
+
+    body.scrolled .title {
+      opacity: 0;
+    }
+
+    body.scrolled .content {
+      opacity: 1;
+    }
+  </style>
+</head>
+<body>
+
+  <div class="hero">
+    <video autoplay muted loop playsinline id="bg-video">
+      <source src="papadrag.mp4" type="video/mp4">
+      Your browser does not support the video tag.
+    </video>
+    <div class="title">Papa Drag</div>
+  </div>
+
+  <div class="content">
+    <p>Papa Drag is a French figure who first emerged in the national media for his powerful message around identity, self-acceptance, and the beauty of difference. Choosing artistic integrity over constant visibility, he stepped back from the spotlight to follow his own creative path.</p>
+    <p>Now based in Berlin, he returns with a new project rooted in transformation. Known for his powerful and distinctive voice, Papa Drag brings a rare intensity to the stage. Through his reinterpretations, familiar songs are reborn with emotional depth and a renewed sense of purpose. A new chapter begins — bold, free, and resolutely his own.</p>
+
+  <script>
+    const hero = document.querySelector('.hero');
+    const threshold = hero.offsetHeight / 2;
+
+    window.addEventListener('scroll', () => {
+      if (window.scrollY > threshold) {
+        document.body.classList.add('scrolled');
+      } else {
+        document.body.classList.remove('scrolled');
+      }
+    });
+  </script>
+
+</body>
+</html>
